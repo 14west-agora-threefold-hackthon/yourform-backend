@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Configuration xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:log4j="http://jakarta.apache.org/log4j/"
+	status="INFO">
+
+	<!-- Appenders -->
+	<Appenders>
+		<Console name="ConsoleAppender" target="SYSTEM_OUT">
+			<PatternLayout pattern="%date{DEFAULT} [%thread] %-5level %logger: %message%n%throwable" />
+		</Console>
+	</Appenders>
+
+	<!-- Loggers -->
+	<Loggers>
+		<!-- Root Logger -->
+		<Root level="DEBUG">
+			<AppenderRef ref="ConsoleAppender" />
+		</Root>
+
+		<!-- Application Packages -->
+		<Logger name="com.agora" level="DEBUG" />
+	</Loggers>
+</Configuration>
