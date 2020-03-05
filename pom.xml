@@ -42,7 +42,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
 		<!-- Spring Boot Starter: Web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -55,7 +55,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
+		<!-- Spring Boot Starter: Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 		<!-- Spring Boot Starter: Log4j 2 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -73,7 +79,7 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-web</artifactId>
 		</dependency>
-		
+
 		<!-- Google Guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
