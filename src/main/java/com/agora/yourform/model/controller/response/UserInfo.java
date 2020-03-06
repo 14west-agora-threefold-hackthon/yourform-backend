@@ -1,6 +1,14 @@
 package com.agora.yourform.model.controller.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({ "location", "device", "shortVideoPastViewTimeSeconds", "longVideoPastViewTimeSeconds",
+		"shortContentPastViewTimeSeconds", "longContentPastViewTimeSeconds", "shortAudioPastViewTimeSeconds",
+		"longAudioPastViewTimeSeconds", "rows", "schema" })
 public class UserInfo {
+
+	private Integer id;
 
 	private String location;
 
@@ -18,8 +26,21 @@ public class UserInfo {
 
 	private Integer longAudioPastViewTimeSeconds = Integer.valueOf(0);
 
+	private Object[][] rows;
+
+	private UserCallInfo schema;
+
 	public UserInfo() {
 		super();
+	}
+
+	@JsonIgnore
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLocation() {
@@ -84,5 +105,21 @@ public class UserInfo {
 
 	public void setLongAudioPastViewTimeSeconds(Integer longAudioPastViewTimeSeconds) {
 		this.longAudioPastViewTimeSeconds = longAudioPastViewTimeSeconds;
+	}
+
+	public Object[][] getRows() {
+		return rows;
+	}
+
+	public void setRows(Object[][] rows) {
+		this.rows = rows;
+	}
+
+	public UserCallInfo getSchema() {
+		return schema;
+	}
+
+	public void setSchema(UserCallInfo schema) {
+		this.schema = schema;
 	}
 }

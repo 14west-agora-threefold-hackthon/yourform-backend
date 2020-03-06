@@ -1,15 +1,18 @@
 package com.agora.yourform.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.agora.yourform.YourFormApplication;
+import com.agora.yourform.exception.EntityExistsException;
 import com.agora.yourform.model.controller.response.UserInfo;
 
 @Repository
@@ -44,6 +47,30 @@ public class LookupUserDaoImpl implements UserDao {
 						userInfo.setLongAudioPastViewTimeSeconds(rs.getInt("long_audio_past_view_time_seconds"));
 
 						return userInfo;
+					}
+				});
+	}
+
+	@Override
+	public void createUser(UserInfo userInfo) {
+		Integer id = userInfo.getId();
+
+		if (id != null && getUserInfoById(id) != null) {
+			throw new EntityExistsException(String.format("User with id=%s already exists", id));
+		}
+
+		jdbcTemplate.update(environment.getRequiredProperty("jdbc.database.query.createuser"),
+				new PreparedStatementSetter() {
+					@Override
+					public void setValues(PreparedStatement ps) throws SQLException {
+						ps.setString(1, userInfo.getLocation());
+						ps.setString(2, userInfo.getDevice());
+						ps.setInt(3, userInfo.getShortVideoPastViewTimeSeconds());
+						ps.setInt(4, userInfo.getLongVideoPastViewTimeSeconds());
+						ps.setInt(5, userInfo.getShortContentPastViewTimeSeconds());
+						ps.setInt(6, userInfo.getLongContentPastViewTimeSeconds());
+						ps.setInt(3, userInfo.getShortAudioPastViewTimeSeconds());
+						ps.setInt(3, userInfo.getLongAudioPastViewTimeSeconds());
 					}
 				});
 	}

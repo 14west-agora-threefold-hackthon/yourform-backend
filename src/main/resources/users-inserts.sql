@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS users (
-	id INTEGER NOT NULL PRIMARY KEY,
+	id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	location STRING,
 	device STRING,
 	short_video_past_view_time_seconds INTEGER DEFAULT 0,

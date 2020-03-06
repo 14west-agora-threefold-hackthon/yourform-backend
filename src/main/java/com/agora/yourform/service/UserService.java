@@ -6,4 +6,6 @@ public interface UserService {
 
 	UserInfo getUserInfoById(Integer id);
 
+	void createUser(UserInfo userInfo);
+
 }

@@ -6,4 +6,6 @@ public interface UserDao {
 
 	UserInfo getUserInfoById(Integer id);
 
+	void createUser(UserInfo userInfo);
+
 }
